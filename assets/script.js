@@ -17,8 +17,18 @@ const checkLength = () => {
     alert('Invalid input, please choose a number 8 through 128!')
     checkLength()
   } else if (!Number.isInteger(length)) {
-    alert('Invalid input, please enter a number')
+    alert('Invalid input, please enter a number!')
     checkLength()
+  }
+}
+const checkCondition = () => {
+  lowerCase = confirm('Do you need Lower Case letters?')
+  upperCase = confirm('Do you need Upper Case letters?')
+  nums = confirm('Do you need numbers?')
+  specChars = confirm('Do you need special characters?')
+  if (!lowerCase && !upperCase && !specChars && !nums) {
+    alert('Invalid input, please choose at least one parameter!')
+    checkCondition()
   }
 }
 
@@ -27,15 +37,17 @@ document.getElementById('generate').addEventListener('click', () => {
 
   // variable reset
   checkLength()
-  lowerCase = confirm('Do you need Lower Case letters?')
-  upperCase = confirm('Do you need Upper Case letters?')
-  nums = confirm('Do you need numbers?')
-  specChars = confirm('Do you need special characters?')
+  checkCondition()
   chosenArray = ""
   password = ""
   prequisite = 0
 
   // Checks includes adding array to chosen array and adding prequisite characters
+
+  if (!lowerCase && !upperCase&& !specChars&& !nums) {
+    alert("You must choose at least one parameter")      
+    location.reload()
+  }
   // lowerCase check
   if (lowerCase) {
     prequisite++
